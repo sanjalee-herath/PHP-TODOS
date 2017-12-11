@@ -35,6 +35,6 @@ class UsersController {
     public function deleteTasks(){
         App::get('database')->delete('task',$_GET['user_id'],$_GET['id']);
 
-        return redirect('tasks');
+        return redirect('deleteTasks');
     }
 }
