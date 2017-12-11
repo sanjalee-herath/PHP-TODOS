@@ -10,16 +10,15 @@ class PagesController{
         return view('register');
     }
 
-    public function about(){
-
-        //require 'views/about.view.php';
-        $company = 'Laracast';
-        return view('about',['company'=>$company]);
-    }
 
     public function task(){
 
         //require 'views/task.view.php';
         return view('task');
+    }
+
+    public function deleteTask(){
+
+        return view('deleteTask');
     }
 }

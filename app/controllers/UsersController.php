@@ -6,15 +6,14 @@ use App\core\App;
 
 class UsersController {
 
-    public function index(){
+    /*public function list(){
 
-        $users = App::get('database')->selectAll('names');
-        return view('users',['users'=>$users]);
-    }
-
+        $users = App::get('database')->selectAll('task',$_GET);
+        return view('task',['users'=>$users]);
+    }*/
     public function store(){
 
-        App::get('database')->insert('user',[ 
+        App::get('database')->insert('user',[
             'name' => $_POST['name'],
             'password' => $_POST['password']
             ]);
@@ -29,6 +28,12 @@ class UsersController {
             'description'=>$_GET['description'],
             'user_id'=>$_GET['user_id']
         ]);
+
+        return redirect('tasks');
+    }
+
+    public function deleteTasks(){
+        App::get('database')->delete('task',$_GET['user_id'],$_GET['id']);
 
         return redirect('tasks');
     }
