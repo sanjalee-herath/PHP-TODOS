@@ -6,11 +6,11 @@ use App\core\App;
 
 class UsersController {
 
-    /*public function list(){
+    public function taskList(){
 
-        $users = App::get('database')->selectAll('task',$_GET);
-        return view('task',['users'=>$users]);
-    }*/
+        $tasks = App::get('database')->selectAll('task',$_GET['user_id']);
+        return view('viewTask',['tasks'=>$tasks]);
+    }
     public function store(){
 
         App::get('database')->insert('user',[

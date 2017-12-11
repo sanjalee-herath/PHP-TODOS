@@ -1,4 +1,5 @@
-<?php require 'partials/header.php'; ?>
+<?php require 'partials/header.php';
+require 'partials/nav.php'; ?>
 
 <h1>Your Tasks</h1>
 

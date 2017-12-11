@@ -1,4 +1,6 @@
-<?php require 'partials/header.php'; ?>
+<?php 
+require 'partials/header.php';
+require 'partials/nav.php'; ?>
 
 <h1>Delete Your Tasks</h1>
 
@@ -10,7 +12,12 @@
     <button type = "submit">DELETE</button>
 </form>
 
+<ul>
+
+    
 
 
+</ul>
+        
 
 <?php require 'partials/footer.php'; ?>

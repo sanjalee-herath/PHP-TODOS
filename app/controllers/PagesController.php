@@ -21,4 +21,9 @@ class PagesController{
 
         return view('deleteTask');
     }
+
+    public function viewTask(){
+        
+        return view('viewTask');
+    }
 }
