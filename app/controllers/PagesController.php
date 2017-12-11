@@ -17,9 +17,9 @@ class PagesController{
         return view('about',['company'=>$company]);
     }
 
-    public function contact(){
+    public function task(){
 
-        //require 'views/contact.view.php';
-        return view('contact');
+        //require 'views/task.view.php';
+        return view('task');
     }
 }

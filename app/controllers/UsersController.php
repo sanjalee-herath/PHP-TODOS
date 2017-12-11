@@ -22,4 +22,14 @@ class UsersController {
         return redirect('');
         
     }
+
+    public function storeTasks(){
+        App::get('database')->insert('task',[
+            'name'=>$_GET['name'],
+            'description'=>$_GET['description'],
+            'user_id'=>$_GET['user_id']
+        ]);
+
+        return redirect('tasks');
+    }
 }
