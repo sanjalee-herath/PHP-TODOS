@@ -16,5 +16,5 @@ function view($name,$data = []){
 
 function redirect($location){
 
-    header("Location: /learningPHP/{$location}");
+    header("Location: /PHPTODOS/{$location}");
 }

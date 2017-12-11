@@ -19,7 +19,7 @@ class UsersController {
             'password' => $_POST['password']
             ]);
         
-        return redirect('register');
+        return redirect('');
         
     }
 }

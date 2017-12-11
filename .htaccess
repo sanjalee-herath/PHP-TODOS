@@ -1,6 +1,6 @@
 RewriteEngine On
 
-RewriteBase /learningPHP/
+RewriteBase /PHPTODOS/
 
 RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
 
