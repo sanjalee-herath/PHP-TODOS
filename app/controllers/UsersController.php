@@ -18,8 +18,8 @@ class UsersController {
             'password' => $_POST['password']
             ]);
         
-        return redirect('');
-        
+        return redirect('login');
+    
     }
 
     public function storeTasks(){
