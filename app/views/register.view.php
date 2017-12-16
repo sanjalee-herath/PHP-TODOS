@@ -3,7 +3,7 @@
 
     <form method= "POST" action="/PHPTODOS/users/">
         <input name="name"> </input>
-        <input name = "password"> </input>
+        <input type ="password" name = "password"> </input>
         <button type = "submit">Register</button>
     
     </form>

@@ -26,4 +26,9 @@ class PagesController{
         
         return view('viewTask');
     }
+
+    public function loginView(){
+
+        return view('login');
+    }
 }

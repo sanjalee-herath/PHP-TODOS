@@ -37,4 +37,17 @@ class UsersController {
 
         return redirect('deleteTasks');
     }
+
+    public function login(){
+
+       $user = App::get('database')->checklogin($_POST['userid'],$_POST['password']);
+
+       if($user === false){
+           die('incorrect username or password!');
+       }
+       else{
+
+            return redirect('viewTasks');
+       }
+    }
 }

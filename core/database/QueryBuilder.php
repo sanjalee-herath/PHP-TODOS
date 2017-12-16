@@ -46,4 +46,20 @@ class QueryBuilder{
          }
     }
 
+    public function checklogin($userid,$pwd){
+
+        $sql = "select id , password from user where id = {$userid} and password = {$pwd}";
+
+        $statement = $this->pdo->prepare($sql);
+
+        try{
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            die($e->getMessage()) ;
+         }
+        
+    
+        
+    }
 }
