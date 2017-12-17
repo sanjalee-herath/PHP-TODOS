@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php
 require 'partials/header.php';
 require 'partials/nav.php';
@@ -7,7 +6,7 @@ require 'partials/nav.php';
 <h1>Your Tasks</h1>
 
 
-<?php echo $_SESSION['user_id'] ; ?>
+
 <ul>
     
     <?php foreach($tasks as $task) : ?>

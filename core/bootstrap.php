@@ -18,3 +18,8 @@ function redirect($location){
 
     header("Location: /PHPTODOS/{$location}");
 }
+
+function session(){
+
+    return session_start();
+}

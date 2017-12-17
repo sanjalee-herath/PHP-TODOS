@@ -16,6 +16,6 @@ $router->get('PHPTODOS/add-task','UsersController@storeTasks');
 
 $router->get('PHPTODOS/delete-task','UsersController@deleteTasks');
 
-//$router->get('PHPTODOS/viewTasks','UsersController@taskList');
+$router->get('PHPTODOS/viewTasks','UsersController@taskList');
 
 $router->post('PHPTODOS/log','UsersController@login');

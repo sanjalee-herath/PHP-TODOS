@@ -7,7 +7,7 @@ use App\core\App;
 class UsersController {
 
     public function taskList(){
-        
+        session();
         $tasks = App::get('database')->selectAll('task',$_SESSION['user_id']);
         return view('viewTask',['tasks'=>$tasks]);
     }
@@ -17,7 +17,7 @@ class UsersController {
             'name' => $_POST['name'],
             'password' => $_POST['password']
             ]);
-        
+    
         return redirect('login');
     
     }
