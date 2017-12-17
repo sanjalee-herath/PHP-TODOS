@@ -7,8 +7,8 @@ use App\core\App;
 class UsersController {
 
     public function taskList(){
-
-        $tasks = App::get('database')->selectAll('task',$_GET['user_id']);
+        
+        $tasks = App::get('database')->selectAll('task',$_SESSION['user_id']);
         return view('viewTask',['tasks'=>$tasks]);
     }
     public function store(){

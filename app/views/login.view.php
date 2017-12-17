@@ -1,4 +1,6 @@
-<?php require 'partials/header.php'; ?>
+<?php 
+session_start();
+require 'partials/header.php'; ?>
 
     <h1>Login Form</h1>
 
@@ -8,9 +10,22 @@
 
         <input type="password" name="password"> </input>
 
-        <button type="submit">Log-In</button>
+        <button type="submit" name="submit">Log-In</button>
     
     </form>
     
+    <?php 
+    
+        
+
+        //if(isset($_POST['submit'])){
+
+            $_SESSION['user_id'] = $_POST['userid'];
+            die($_SESSION['user_id']);
+            
+        //}
+        
+        
+    ?>
 
 <?php require 'partials/footer.php'; ?>
