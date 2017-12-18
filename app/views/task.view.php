@@ -1,7 +1,7 @@
 <?php require 'partials/header.php';
 require 'partials/nav.php'; ?>
 
-<h1>Your Tasks</h1>
+<h1>Add Your Tasks</h1>
 
 
 
@@ -9,7 +9,6 @@ require 'partials/nav.php'; ?>
 
 Title : <input name="name"> </input>
 Description : <input name="description"> </input>
-User Id : <input name="user_id"> </input>
 <button type="submit">ADD</button>
 
 

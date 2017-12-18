@@ -8,8 +8,15 @@ class QueryBuilder{
         $this->pdo = $pdo;
     }
 
-    public function selectAll($table,$userid){
-        $statement = $this->pdo->prepare("select * from {$table} where user_id = {$userid}");
+    public function selectTask($table,$userid){
+        $statement = $this->pdo->prepare("select id , name from {$table} where user_id = {$userid}");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+
+    }
+
+    public function selectTaskDes($table,$userid,$taskid){
+        $statement = $this->pdo->prepare("select id , description from {$table} where user_id = {$userid} and id = {$taskid}");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
 

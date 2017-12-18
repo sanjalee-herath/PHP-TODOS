@@ -11,8 +11,8 @@ require 'partials/nav.php';
     
     <?php foreach($tasks as $task) : ?>
 
-			<li><?= $task->id .' : '. $task->name . ' : ' . $task->description . ' : ' . $task->user_id ; ?> </li>
-
+            <li><a href="/PHPTODOS/manage-task?id=<?= $task->id ; ?>"> <?= $task->id .' : '.  $task->name    ;?> </a> </li>
+        
     <?php endforeach; ?>
 
 

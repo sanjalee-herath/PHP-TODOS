@@ -17,10 +17,7 @@ class PagesController{
         return view('task');
     }
 
-    public function deleteTask(){
-
-        return view('deleteTask');
-    }
+    
 
     public function viewTask(){
         

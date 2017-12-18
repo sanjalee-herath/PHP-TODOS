@@ -4,8 +4,6 @@ $router->get('PHPTODOS','PagesController@home');
 
 $router->get('PHPTODOS/tasks','PagesController@task');
 
-$router->get('PHPTODOS/deleteTasks','PagesController@deleteTask');
-
 $router->get('PHPTODOS/viewTasks','PagesController@viewTask');
 
 $router->get('PHPTODOS/login','PagesController@loginView');
@@ -19,3 +17,5 @@ $router->get('PHPTODOS/delete-task','UsersController@deleteTasks');
 $router->get('PHPTODOS/viewTasks','UsersController@taskList');
 
 $router->post('PHPTODOS/log','UsersController@login');
+
+$router->get('PHPTODOS/manage-task','UsersController@manageTask');

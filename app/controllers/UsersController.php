@@ -8,9 +8,18 @@ class UsersController {
 
     public function taskList(){
         session();
-        $tasks = App::get('database')->selectAll('task',$_SESSION['user_id']);
+        $tasks = App::get('database')->selectTask('task',$_SESSION['user_id']);
         return view('viewTask',['tasks'=>$tasks]);
     }
+
+    public function manageTask(){
+        session();
+        $tasks = App::get('database')->selectTaskDes('task',$_SESSION['user_id'],$_GET['id']);
+        return view('manageTask',['tasks'=>$tasks]);
+
+    }
+
+
     public function store(){
 
         App::get('database')->insert('user',[
@@ -23,19 +32,21 @@ class UsersController {
     }
 
     public function storeTasks(){
+        session();
         App::get('database')->insert('task',[
             'name'=>$_GET['name'],
             'description'=>$_GET['description'],
-            'user_id'=>$_GET['user_id']
+            'user_id'=>$_SESSION['user_id']
         ]);
 
         return redirect('tasks');
     }
 
     public function deleteTasks(){
-        App::get('database')->delete('task',$_GET['user_id'],$_GET['id']);
+        session();
+        App::get('database')->delete('task',$_SESSION['user_id'],$_GET['id']);
 
-        return redirect('deleteTasks');
+        return redirect('viewTasks');
     }
 
     public function login(){
