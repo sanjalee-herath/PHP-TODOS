@@ -11,7 +11,7 @@ require 'partials/header.php';
     <?php foreach($tasks as $task) : ?>
 
             <li><a href="/PHPTODOS/manage-task?id=<?= $task->id ; ?>"> <?=  $task->name    ;?> </a> </li>
-        
+            
     <?php endforeach; ?>
 
     

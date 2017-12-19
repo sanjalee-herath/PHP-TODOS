@@ -6,7 +6,7 @@ $router->get('PHPTODOS/viewTasks','PagesController@viewTask');
 
 $router->get('PHPTODOS/login','PagesController@loginView');
 
-//$router->get('PHPTODOS/editTask','PagesController@editView');
+$router->get('PHPTODOS/editTask','PagesController@editView');
 
 $router->post('PHPTODOS/users','UsersController@store');
 
@@ -20,6 +20,6 @@ $router->post('PHPTODOS/log','UsersController@login');
 
 $router->get('PHPTODOS/manage-task','UsersController@manageTask');
 
-$router->get('PHPTODOS/update-task','UsersController@updateTask');
+$router->get('PHPTODOS/editTask','UsersController@fetchData');
 
-//$router->get('PHPTODOS/edit-task','UsersController@editTask');
+$router->post('PHPTODOS/edit-task','UsersController@editTasks');

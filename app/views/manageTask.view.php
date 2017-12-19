@@ -14,10 +14,10 @@ require 'partials/nav.php';
          <li> 
             <?= $task->description    ; ?> <br><br>
             
-            <a href="">Edit</a>
+            <a href="/PHPTODOS/editTask">Edit</a>
             <a href="/PHPTODOS/delete-task?id=<?= $task->id ; ?> ">Delete</a>
             
-            
+            <?php $_SESSION['taskid'] = $task->id ; ?>
             
         </li>
 

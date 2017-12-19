@@ -19,11 +19,20 @@ class UsersController {
 
     }
 
-    public function editTask(){
-        session();
-        $tasks = App::get('database')->selectTaskDes('task',$_SESSION['user_id'],$_GET['id']);
-        return view('editTask',['tasks'=>$tasks]);
+    public function fetchData(){
 
+        session();
+        $tasks = App::get('database')->fetchTask($_SESSION['user_id'],$_SESSION['taskid']);
+        return view('editTask',['tasks'=>$tasks]);
+    }
+
+
+    public function editTasks(){
+
+        session();
+        App::get('database')->updateTask($_SESSION['taskid'],$_POST['name'],$_POST['description'],$_SESSION['user_id']);
+        $tasks = App::get('database')->fetchTask($_SESSION['user_id'],$_SESSION['taskid']);
+        return view('editTask',['tasks'=>$tasks]);
     }
 
 
@@ -69,11 +78,5 @@ class UsersController {
        }
     }
 
-    public function updateTask(){
-         //die($_GET['description']); 
-        session();
-        die($_GET['id']);
-        App::get('database')->update($_GET['id'],$_GET['description'],$_SESSION['user_id']);
-        return redirect('viewTasks');
-    }
+    
 }

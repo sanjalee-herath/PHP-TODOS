@@ -22,6 +22,30 @@ class QueryBuilder{
 
     }
 
+
+    public function updateTask($taskid,$name,$description,$userid){
+        $sql = "UPDATE task SET name = :name ,description = :description WHERE user_id = :userid AND id = :taskid";
+
+        try{
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute(array
+                (':name' => $name ,':description' => $description , ':userid' => $userid , ':taskid' => $taskid)
+            );
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+    public function fetchTask($userid , $taskid){
+
+        $statement = $this->pdo->prepare("select id, name , description from task where user_id = {$userid} and id ={$taskid}");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+
+    }
+
     public function insert($table,$values){
 
         $sql = sprintf(
