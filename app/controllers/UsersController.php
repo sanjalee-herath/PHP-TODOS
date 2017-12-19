@@ -19,6 +19,13 @@ class UsersController {
 
     }
 
+    public function editTask(){
+        session();
+        $tasks = App::get('database')->selectTaskDes('task',$_SESSION['user_id'],$_GET['id']);
+        return view('editTask',['tasks'=>$tasks]);
+
+    }
+
 
     public function store(){
 
@@ -39,7 +46,7 @@ class UsersController {
             'user_id'=>$_SESSION['user_id']
         ]);
 
-        return redirect('tasks');
+        return redirect('viewTasks');
     }
 
     public function deleteTasks(){
@@ -60,5 +67,13 @@ class UsersController {
 
             return redirect('viewTasks');
        }
+    }
+
+    public function updateTask(){
+         //die($_GET['description']); 
+        session();
+        die($_GET['id']);
+        App::get('database')->update($_GET['id'],$_GET['description'],$_SESSION['user_id']);
+        return redirect('viewTasks');
     }
 }

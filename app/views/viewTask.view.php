@@ -1,9 +1,8 @@
 <?php
 require 'partials/header.php';
-require 'partials/nav.php';
  ?>
 
-<h1>Your Tasks</h1>
+<h1>My TODOS</h1>
 
 
 
@@ -11,15 +10,23 @@ require 'partials/nav.php';
     
     <?php foreach($tasks as $task) : ?>
 
-            <li><a href="/PHPTODOS/manage-task?id=<?= $task->id ; ?>"> <?= $task->id .' : '.  $task->name    ;?> </a> </li>
+            <li><a href="/PHPTODOS/manage-task?id=<?= $task->id ; ?>"> <?=  $task->name    ;?> </a> </li>
         
     <?php endforeach; ?>
 
-
+    
 
 
 </ul>
-    
+
+ <form method="GET" action="/PHPTODOS/add-task">
+
+    Title : <input name="name"> </input>
+    Description : <input name="description"> </input>
+    <button type="submit">ADD</button>
+
+
+</form>   
 
 <?php require 'partials/footer.php'; ?>
 

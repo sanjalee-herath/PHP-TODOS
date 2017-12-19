@@ -16,7 +16,7 @@ class QueryBuilder{
     }
 
     public function selectTaskDes($table,$userid,$taskid){
-        $statement = $this->pdo->prepare("select id , description from {$table} where user_id = {$userid} and id = {$taskid}");
+        $statement = $this->pdo->prepare("select id , name, description from {$table} where user_id = {$userid} and id = {$taskid}");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
 
@@ -67,6 +67,22 @@ class QueryBuilder{
          }
         
     
+        
+    }
+
+    public function update($taskid,$des,$userid){
+
+        $sql = " UPDATE 'task' SET 'description' = :des WHERE user_id = :userid AND id = :taskid ";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(":des", $des);
+        $statement->bindValue(":userid", $userid);
+        $statement->bindValue(":taskid", $taskid);
+
+        try{
+            $statement->execute();
+        } catch(Exception $e){
+            die($e->getMessage()) ;
+        }
         
     }
 }

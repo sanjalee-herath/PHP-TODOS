@@ -1,18 +1,23 @@
 <?php
 require 'partials/header.php';
 require 'partials/nav.php';
- ?>
+?>
 
-<h1>Your Tasks</h1>
+
 
 <ul>
     
     <?php foreach($tasks as $task) : ?>
 
+        <h1><?= $task->name ; ?></h1>
+
          <li> 
-            <?= $task->id .' : '.  $task->description    ; ?> 
+            <?= $task->description    ; ?> <br><br>
             
-            <a href="/PHPTODOS/delete-task?id=<?= $task->id ; ?> ">DELETE</a>
+            <a href="">Edit</a>
+            <a href="/PHPTODOS/delete-task?id=<?= $task->id ; ?> ">Delete</a>
+            
+            
             
         </li>
 

@@ -28,4 +28,10 @@ class PagesController{
 
         return view('login');
     }
+
+    public function editView(){
+        
+         return view('editTask');
+    }
+
 }
