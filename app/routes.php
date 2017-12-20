@@ -23,3 +23,5 @@ $router->get('PHPTODOS/manage-task','UsersController@manageTask');
 $router->get('PHPTODOS/editTask','UsersController@fetchData');
 
 $router->post('PHPTODOS/edit-task','UsersController@editTasks');
+
+$router->get('PHPTODOS/logout','UsersController@logout');

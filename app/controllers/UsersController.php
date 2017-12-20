@@ -8,6 +8,7 @@ class UsersController {
 
     public function taskList(){
         session();
+        die($_SESSION['user_id']);
         $tasks = App::get('database')->selectTask('task',$_SESSION['user_id']);
         return view('viewTask',['tasks'=>$tasks]);
     }
@@ -66,7 +67,6 @@ class UsersController {
     }
 
     public function login(){
-
        $user = App::get('database')->checklogin($_POST['userid'],$_POST['password']);
 
        if($user === false){
@@ -76,6 +76,14 @@ class UsersController {
 
             return redirect('viewTasks');
        }
+    }
+
+    public function logout(){
+
+        session();
+        $_SESSION = array();
+        session_destroy();
+        return redirect('login');
     }
 
     

@@ -1,7 +1,7 @@
 <?php
 require 'partials/header.php';
  ?>
-
+<h3><a href="/PHPTODOS/logout">LogOut</a></h3>
 <h1>My TODOS</h1>
 
 
