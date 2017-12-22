@@ -41,7 +41,7 @@ class UsersController {
 
         App::get('database')->insert('user',[
             'name' => $_POST['name'],
-            'password' => $_POST['password']
+            'password' =>md5($_POST['password']) 
             ]);
     
         return redirect('login');
@@ -67,14 +67,14 @@ class UsersController {
     }
 
     public function login(){
-       $user = App::get('database')->checklogin($_POST['userid'],$_POST['password']);
+       $user = App::get('database')->checklogin($_POST['userid']);
 
-       if($user === false){
+       if($user == md5($_POST['password'])){
            die('incorrect username or password!');
        }
        else{
-
-            return redirect('viewTasks');
+            
+           return redirect('viewTasks');
        }
     }
 

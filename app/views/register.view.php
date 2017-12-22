@@ -2,8 +2,8 @@
     <h1>Create An Account</h1>
 
     <form method= "POST" action="/PHPTODOS/users/">
-        <input name="name"> </input>
-        <input type ="password" name = "password"> </input>
+       username : <input name="name"> </input>
+       Password : <input type ="password" name = "password"> </input>
         <button type = "submit">Register</button>
     
     </form>

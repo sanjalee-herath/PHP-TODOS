@@ -77,9 +77,9 @@ class QueryBuilder{
          }
     }
 
-    public function checklogin($userid,$pwd){
+    public function checklogin($userid){
 
-        $sql = "select id , password from user where id = {$userid} and password = {$pwd}";
+        $sql = "select password from user where id = {$userid}";
 
         $statement = $this->pdo->prepare($sql);
 

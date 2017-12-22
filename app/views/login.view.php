@@ -8,9 +8,9 @@ require 'partials/header.php'; ?>
 
     <form method = "POST" action="/PHPTODOS/log/">
     
-        <input name="userid"></input>
+        userid : <input name="userid"></input>
 
-        <input type="password" name="password"> </input>
+        password : <input type="password" name="password"> </input>
 
         <button type="submit" name="submit">Log-In</button>
     
