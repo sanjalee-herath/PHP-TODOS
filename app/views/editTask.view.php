@@ -2,11 +2,11 @@
 require 'partials/header.php';
  ?>
     
-    <form action="/PHPTODOS/edit-task" method ="POST">
+    <form action="/PHPTODOS/update/" method ="POST">
 
         <?php foreach($tasks as $task): ?>
 
-        <h3><a href="/PHPTODOS/manage-task?id=<?= $task->id ?>">Back</a></h3>
+        <h3><a href="/PHPTODOS/task?id=<?= $task->id ?>">Back</a></h3>
 
         <input type="text" name="name" value = "<?= $task->name ; ?>"><br>
         <input type="text" name="description" value = "<?= $task->description ; ?>"><br>

@@ -10,7 +10,7 @@ require 'partials/header.php';
     
     <?php foreach($tasks as $task) : ?>
 
-            <li><a href="/PHPTODOS/manage-task?id=<?= $task->id ; ?>"> <?=  $task->name    ;?> </a> </li>
+            <li><a href="/PHPTODOS/task?id=<?= $task->id ; ?>"> <?=  $task->name    ;?> </a> </li>
             
     <?php endforeach; ?>
 
@@ -19,7 +19,7 @@ require 'partials/header.php';
 
 </ul>
 
- <form method="GET" action="/PHPTODOS/add-task">
+ <form method="POST" action="/PHPTODOS/task">
 
     Title : <input name="name"> </input>
     Description : <input name="description"> </input>

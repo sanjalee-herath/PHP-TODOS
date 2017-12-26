@@ -6,7 +6,7 @@ require 'partials/header.php'; ?>
 
     <h1>Login Form</h1>
 
-    <form method = "POST" action="/PHPTODOS/log/">
+    <form method = "POST" action="/PHPTODOS/login/">
     
         userid : <input name="userid"></input>
 
@@ -22,18 +22,18 @@ require 'partials/header.php'; ?>
     
         
 
-        if(isset($_POST['submit'])){
+        //if(isset($_POST['submit'])){
 
-            $_SESSION['user_id'] = $_POST['userid'];
-
-        
+            $_SESSION['user_id'] = 13; //$_POST['userid'];
             
             
-        }
+            
+            
+        //}
         
         
     ?>
 
-<p>Don't have account ?</p> <a href="/PHPTODOS">Create an Acoount</a>
+<p>Don't have account ?</p> <a href="/PHPTODOS/signup">Create an Acoount</a>
 
 <?php require 'partials/footer.php'; ?>
