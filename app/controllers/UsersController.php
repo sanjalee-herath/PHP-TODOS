@@ -46,10 +46,14 @@ class UsersController {
 
     
     public function login(){
+
+        session_start();
+
        $user = App::get('database')->checklogin($_POST['username']);
 
        
        if($user['password'] == md5($_POST['password'])){
+           $_SESSION['user_name'] = $_POST['username'];
            return redirect('');
        }
        else{
@@ -59,12 +63,15 @@ class UsersController {
     }
 
 
+
     public function logout(){
 
         session();
         $_SESSION = array();
-        session_destroy();
-        return redirect('login');
+        if(session_destroy()){
+            return redirect('login');
+        }
+        
     }
 
     
