@@ -8,7 +8,7 @@ require 'partials/header.php'; ?>
 
     <form method = "POST" action="/PHPTODOS/login/">
     
-        userid : <input name="userid"></input>
+        username : <input name="username"></input>
 
         password : <input type="password" name="password"> </input>
 
@@ -24,7 +24,7 @@ require 'partials/header.php'; ?>
 
         //if(isset($_POST['submit'])){
 
-            $_SESSION['user_id'] = 13; //$_POST['userid'];
+            $_SESSION['user_name'] = 'lakmal';  //$_POST['username'];
             
             
             

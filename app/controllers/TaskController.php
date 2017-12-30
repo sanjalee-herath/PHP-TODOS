@@ -8,15 +8,15 @@ class TaskController{
 
     public function index(){
         session();
-        echo $_SESSION['user_id'];
-        $tasks = App::get('database')->selectTasks('task',$_SESSION['user_id']);
+        echo $_SESSION['user_name'];
+        $tasks = App::get('database')->selectTasks('task',$_SESSION['user_name']);
         return view('viewTask',['tasks'=>$tasks]);
     }
 
     public function get(){
         session();
         $tasks = App::get('database')->selectTask(
-            'task',$_SESSION['user_id'],$_GET['id']
+            $_SESSION['user_name'],$_GET['id']
         );
 
         return view('manageTask',['tasks'=>$tasks]);
@@ -26,8 +26,8 @@ class TaskController{
     public function updateView(){
         
         session();
-        $tasks = App::get('database')->fetchTask(
-            $_SESSION['user_id'],$_SESSION['taskid']
+        $tasks = App::get('database')->selectTask(
+            $_SESSION['user_name'],$_SESSION['taskid']
         );
 
         return view('editTask',['tasks'=>$tasks]);
@@ -41,11 +41,11 @@ class TaskController{
             $_SESSION['taskid'],
             $_POST['name'],
             $_POST['description'],
-            $_SESSION['user_id']
+            $_SESSION['user_name']
         );
 
-        $tasks = App::get('database')->fetchTask(
-            $_SESSION['user_id'],$_SESSION['taskid']
+        $tasks = App::get('database')->selectTask(
+            $_SESSION['user_name'],$_SESSION['taskid']
         );
 
         return view('editTask',['tasks'=>$tasks]);
@@ -53,18 +53,16 @@ class TaskController{
 
     public function store(){
         session();
-        App::get('database')->insert('task',[
-            'name'=>$_POST['name'],
-            'description'=>$_POST['description'],
-            'user_id'=>$_SESSION['user_id']
-        ]);
+        App::get('database')->insertTask(
+            $_POST['name'] , $_POST['description'] , $_SESSION['user_name']
+        );
 
         return redirect('');
     }
 
     public function destroy(){
         session();
-        App::get('database')->delete('task',$_SESSION['user_id'],$_GET['id']);
+        App::get('database')->delete('task',$_SESSION['user_name'],$_GET['id']);
 
         return redirect('');
     }

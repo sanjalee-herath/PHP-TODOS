@@ -8,28 +8,53 @@ class QueryBuilder{
         $this->pdo = $pdo;
     }
 
-    public function selectTasks($table,$userid){
-        $statement = $this->pdo->prepare("select id , name from {$table} where user_id = {$userid}");
+    public function getUserId($username){
+
+        $statement = $this->pdo->prepare("select id from user where name like '{$username}'");
+        
+        try{
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            die($e->getMessage()) ;
+        }
+
+    }
+
+    public function selectTasks($table,$username){
+
+        $user = $this->getUserId($username);
+
+        $statement = $this->pdo->prepare("select id , name from {$table} where user_id = {$user['id']}");
+
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
 
     }
 
-    public function selectTask($table,$userid,$taskid){
-        $statement = $this->pdo->prepare("select id , name, description from {$table} where user_id = {$userid} and id = {$taskid}");
+    public function selectTask($username,$taskid){
+
+        $user = $this->getUserId($username);
+
+        $statement = $this->pdo->prepare(
+            "select id , name, description from task where user_id = {$user['id']} and id = {$taskid}"
+        );
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
 
     }
 
 
-    public function updateTask($taskid,$name,$description,$userid){
+    public function updateTask($taskid,$name,$description,$username){
+
+        $user = $this->getUserId($username);
+
         $sql = "UPDATE task SET name = :name ,description = :description WHERE user_id = :userid AND id = :taskid";
 
         try{
             $statement = $this->pdo->prepare($sql);
             $statement->execute(array
-                (':name' => $name ,':description' => $description , ':userid' => $userid , ':taskid' => $taskid)
+                (':name' => $name ,':description' => $description , ':userid' => $user['id'] , ':taskid' => $taskid)
             );
 
         } catch(PDOException $e) {
@@ -38,13 +63,7 @@ class QueryBuilder{
         }
     }
 
-    public function fetchTask($userid , $taskid){
 
-        $statement = $this->pdo->prepare("select id, name , description from task where user_id = {$userid} and id ={$taskid}");
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS);
-
-    }
 
     public function insert($table,$values){
 
@@ -65,9 +84,31 @@ class QueryBuilder{
         
     }
 
-    public function delete($table,$userid,$taskid){
+    public function insertTask($name,$description,$username){
 
-        $sql = "delete from {$table} where user_id = {$userid} AND id = {$taskid}";
+        $user = $this->getUserId($username);
+
+        $statement = $this->pdo->prepare(
+            "insert into task (name,description,user_id) values (:name,:description,:user_id)"
+        );
+
+        try{
+            $statement->execute([
+                'name' => $name,
+                'description' => $description,
+                'user_id' => $user['id']
+            ]);
+        }catch(Exception $e){
+           die($e->getMessage()) ;
+        }
+
+    }
+
+    public function delete($table,$username,$taskid){
+
+        $user = $this->getUserId($username);
+
+        $sql = "delete from {$table} where user_id = {$user['id']} AND id = {$taskid}";
 
         try{
              $this->pdo->exec($sql);
@@ -77,9 +118,9 @@ class QueryBuilder{
          }
     }
 
-    public function checklogin($userid){
+    public function checklogin($username){
 
-        $sql = "select password from user where id = {$userid}";
+        $sql = "select password from user where name like '{$username}'";
 
         $statement = $this->pdo->prepare($sql);
 
@@ -94,12 +135,14 @@ class QueryBuilder{
         
     }
 
-    public function update($taskid,$des,$userid){
+    public function update($taskid,$des,$username){
+
+        $user = $this->getUserId($username);
 
         $sql = " UPDATE 'task' SET 'description' = :des WHERE user_id = :userid AND id = :taskid ";
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue(":des", $des);
-        $statement->bindValue(":userid", $userid);
+        $statement->bindValue(":userid", $user['id']);
         $statement->bindValue(":taskid", $taskid);
 
         try{
@@ -108,5 +151,19 @@ class QueryBuilder{
             die($e->getMessage()) ;
         }
         
+    }
+
+    public function getUser($username){
+
+        $sql = "select name from user where name like '{$username}'";
+
+        $statement = $this->pdo->prepare($sql);
+        
+        try{
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            die($e->getMessage()) ;
+        }
     }
 }

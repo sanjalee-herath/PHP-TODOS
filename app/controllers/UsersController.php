@@ -6,6 +6,11 @@ use App\core\App;
 
 class UsersController {
 
+    public function get(){
+
+        
+    }
+
     public function storeView(){
         
         //require 'views/index.view.php';
@@ -14,12 +19,23 @@ class UsersController {
 
     public function store(){
 
-        App::get('database')->insert('user',[
-            'name' => $_POST['name'],
-            'password' =>md5($_POST['password']) 
-            ]);
-    
-        return redirect('login');
+        $user = App::get('database')->getUser($_POST['name']);
+        
+            if($user['name']){
+        
+                die('this username is already available..choose another!');
+            }
+            else{
+
+                App::get('database')->insert('user',[
+                    'name' => $_POST['name'],
+                    'password' =>md5($_POST['password']) 
+                    ]);
+            
+                return redirect('login');
+
+            }
+        
     
     }
 
@@ -30,9 +46,9 @@ class UsersController {
 
     
     public function login(){
-       $user = App::get('database')->checklogin($_POST['userid']);
+       $user = App::get('database')->checklogin($_POST['username']);
 
-       var_dump($user);
+       
        if($user['password'] == md5($_POST['password'])){
            return redirect('');
        }
