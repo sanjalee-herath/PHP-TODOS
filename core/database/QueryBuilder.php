@@ -104,7 +104,7 @@ class QueryBuilder{
 
     }
 
-    public function delete($table,$username,$taskid){
+    public function deleteTask($table,$username,$taskid){
 
         $user = $this->getUserId($username);
 

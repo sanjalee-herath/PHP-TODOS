@@ -1,7 +1,4 @@
 <?php 
-session_start();
-ob_start();
-//session_reset();
 require 'partials/header.php'; ?>
 
     <h1>Login Form</h1>
@@ -18,19 +15,7 @@ require 'partials/header.php'; ?>
 
     
     
-    <?php 
-    
-        //if(isset($_POST['submit'])){
 
-            //$_SESSION['user_name'] = 'lakmal';  //$_POST['username'];
-            
-            
-            
-            
-        //}
-        
-        
-    ?>
 
 <p>Don't have account ?</p> <a href="/PHPTODOS/signup">Create an Acoount</a>
 

@@ -2,13 +2,15 @@
 
 namespace App\controller;
 
-use App\core\App;
+use App\model\User;
 
 class UsersController {
 
-    public function get(){
+    private $model;
 
-        
+    public function __construct(){
+
+        $this->model = new User;
     }
 
     public function storeView(){
@@ -19,22 +21,7 @@ class UsersController {
 
     public function store(){
 
-        $user = App::get('database')->getUser($_POST['name']);
-        
-            if($user['name']){
-        
-                die('this username is already available..choose another!');
-            }
-            else{
-
-                App::get('database')->insert('user',[
-                    'name' => $_POST['name'],
-                    'password' =>md5($_POST['password']) 
-                    ]);
-            
-                return redirect('login');
-
-            }
+        $this->model->store($_POST['name'],$_POST['password']);
         
     
     }
@@ -47,19 +34,7 @@ class UsersController {
     
     public function login(){
 
-        session_start();
-
-       $user = App::get('database')->checklogin($_POST['username']);
-
-       
-       if($user['password'] == md5($_POST['password'])){
-           $_SESSION['user_name'] = $_POST['username'];
-           return redirect('');
-       }
-       else{
-            die('incorrect username or password!');
-           
-       }
+        $this->model->login($_POST['username'],$_POST['password']);
     }
 
 
